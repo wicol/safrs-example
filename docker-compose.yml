@@ -1,0 +1,24 @@
+version: '3.6'
+services:
+  safrs:
+    build:
+      context: .
+    environment:
+      CONFIG_MODULE: config/base.py
+      FLASK_APP: app:create_app
+      FLASK_ENV: development
+      DB_HOST: psql
+      DB_NAME: safrs
+      DB_USER: postgres
+      DB_PWD: postgres
+    ports:
+      - 1237:80
+    volumes:
+      - .:/app
+    restart: always
+    networks:
+      - develop
+
+networks:
+  develop:
+    name: develop
